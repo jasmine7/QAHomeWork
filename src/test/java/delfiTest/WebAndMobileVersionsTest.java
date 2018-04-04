@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  * Article title and number of comments are have to be checked on the main page, article page and comment page.
  */
 
-public class webAndMobileVersionsTest {
+public class WebAndMobileVersionsTest {
     private BaseFunctions baseFunctions = new BaseFunctions();
-    private static final Logger LOGGER = LogManager.getLogger(webAndMobileVersionsTest.class);
+    private static final Logger LOGGER = LogManager.getLogger(WebAndMobileVersionsTest.class);
     private static final String WEB_MAIN_PAGE_URL = "http://rus.delfi.lv";
     private static final String MOBILE_MAIN_PAGE_URL = "http://m.rus.delfi.lv";
 

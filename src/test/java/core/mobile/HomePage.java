@@ -6,6 +6,7 @@ import model.Article;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
@@ -26,9 +27,20 @@ public class HomePage {
         return baseFunctions.findElements(ARTICLE);
     }
 
+    public List<String> getAllArticleTitles() {
+        List<WebElement> articles = getAllArticles();
+        assertFalse("Article list on the main page of the mobile version is empty.", articles.isEmpty());
+
+        List<String> articleTitles = new ArrayList<>();
+        for (WebElement article : articles) {
+            articleTitles.add(article.findElement(TITLE).getText());
+        }
+        return articleTitles;
+    }
+
     public List<Article> getFirstFiveArticles() {
         List<WebElement> articles = getAllArticles();
-        assertFalse("Article list on the main page of the web version is empty.", articles.isEmpty());
+        assertFalse("Article list on the main page of the mobile version is empty.", articles.isEmpty());
 
         return helpers.getFirstFiveArticles(articles, TITLE, COMMENTS);
     }
