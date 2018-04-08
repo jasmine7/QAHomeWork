@@ -25,9 +25,8 @@ public class CommentsPage {
     }
 
     public String getArticleTitle() {
-        List<WebElement> articleTitles = baseFunctions.findElements(TITLE);
         assertFalse("Article title on the comment page of the web version is not presented.",
-                articleTitles.isEmpty());
+                baseFunctions.findElements(TITLE).isEmpty());
 
         String articleTitle = baseFunctions.findElement(TITLE).getText();
 

@@ -22,9 +22,8 @@ public class ArticlePage {
     }
 
     public String getArticleTitle() {
-        List<WebElement> articleTitles = baseFunctions.findElement(HEADER).findElements(TITLE);
         assertFalse("Article title on the article page of the mobile version is not presented.",
-                articleTitles.isEmpty());
+                baseFunctions.findElement(HEADER).findElements(TITLE).isEmpty());
 
         return baseFunctions.findElement(HEADER).findElement(TITLE).getText();
     }

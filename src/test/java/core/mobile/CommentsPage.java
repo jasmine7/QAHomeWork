@@ -25,9 +25,8 @@ public class CommentsPage {
     }
 
     public String getArticleTitle() {
-        List<WebElement> articleTitles = baseFunctions.findElements(TITLE);
         assertFalse("Article title on the comment page of the mobile version is not presented.",
-                articleTitles.isEmpty());
+                baseFunctions.findElements(TITLE).isEmpty());
         return baseFunctions.findElement(TITLE).getText();
     }
 
