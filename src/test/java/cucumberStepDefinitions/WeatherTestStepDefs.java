@@ -2,7 +2,7 @@ package cucumberStepDefinitions;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import model.WeatherResponse;
+import model.weather.WeatherResponse;
 import requester.WeatherRequester;
 
 import java.io.IOException;
@@ -29,5 +29,26 @@ public class WeatherTestStepDefs {
     @Then("LAT should (.*)")
     public void check_lat(BigDecimal lat) {
         assertEquals("Wrong LAT: ", lat, response.getCoord().getLat());
+    }
+
+    @Then("city NAME should be (.*)")
+    public void check_city_name(String name) {
+        assertEquals("Wrong city name: ", name, response.getName());
+    }
+
+    @Then("city ID should be (.*)")
+    public void check_city_id(Long id) {
+        assertEquals("Wrong city id: ", id, response.getId());
+    }
+
+    @Then("country should be (.*)")
+    public void check_country(String country) {
+        assertEquals("Wrong country: ", country, response.getSys().getCountry());
+    }
+
+    @Then("max temperature should be greater than min temperature")
+    public void compare_max_temp_with_min_temp() {
+        assertTrue("Max temperature less than min temperature",
+                response.getMain().getTemp_max().compareTo(response.getMain().getTemp_min()) > 0);
     }
 }

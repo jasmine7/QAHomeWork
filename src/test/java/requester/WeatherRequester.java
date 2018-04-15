@@ -1,7 +1,7 @@
 package requester;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.WeatherResponse;
+import model.weather.WeatherResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
