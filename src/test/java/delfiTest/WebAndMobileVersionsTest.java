@@ -4,6 +4,7 @@ import core.BaseFunctions;
 import model.Article;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.After;
 import org.junit.Test;
 
 import java.util.List;
@@ -98,6 +99,8 @@ public class WebAndMobileVersionsTest {
                                 " of the web version doesn't match with comment count on the main page.",
                         firstFiveWebArticles.get(i).getCommentCount()
                                 .equals(webCommentPage.getCommentCount()));
+            } else {
+                LOGGER.info("The article Nr. " + (i + 1) + " on the web version doesn't have comments.");
             }
 
             if(firstFiveMobileArticles.get(i).getCommentLink() != null) {
@@ -115,10 +118,15 @@ public class WebAndMobileVersionsTest {
                                 " of the mobile version doesn't match with comment count on the main page.",
                         firstFiveWebArticles.get(i).getCommentCount()
                                 .equals(mobileCommentPage.getCommentCount()));
+            } else {
+                LOGGER.info("The article Nr. " + (i + 1) + " on the mobile version doesn't have comments.");
             }
 
         }
+    }
 
+    @After
+    public void closeBrowser() {
         baseFunctions.closeBrowser();
     }
 

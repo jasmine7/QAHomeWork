@@ -4,6 +4,7 @@ import core.BaseFunctions;
 import core.web.HomePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class ArticleTitleSearchTest {
     private static final Logger LOGGER = LogManager.getLogger(ArticleTitleSearchTest.class);
 
     private static final String WEB_MAIN_PAGE_URL = "http://rus.delfi.lv";
-    private static final String ARTICLE_TITLE = "Министр обороны России заявил об угрозе новой гонки вооружений";
+    private static final String ARTICLE_TITLE = "В ночь на понедельник температура воздуха может опуститься ниже нуля";
 
     @Test
     public void webMainPageArticleTitleSearchTest() {
@@ -40,7 +41,10 @@ public class ArticleTitleSearchTest {
             }
         }
         Assert.assertTrue("Article title isn't presented on the main page.", isTitlePresented);
+    }
 
+    @After
+    public void closeBrowser() {
         baseFunctions.closeBrowser();
     }
 

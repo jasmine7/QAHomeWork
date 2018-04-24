@@ -19,7 +19,6 @@ public class ReservationRequester {
         String responseToParse = responseEntity.getBody();
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(responseToParse, new TypeReference<List<ReservationResponse>>(){});
-//        return mapper.readValue(responseToParse, List.class);
     }
 
 }
