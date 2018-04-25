@@ -2,14 +2,14 @@ Feature: This tests check reservation
 
   Scenario: Check reservation, that was created automatically
     When we are requesting reservations
-    Then reservation id should be 63
-    And name should be John
-    And surname should be Smith
-    And departure airport should be RIX
-    And arrival airport should be JFC
-    And luggage count should be 2
-    And discount code should be Code123
-    And children count should be 1
-    And flight date should be 13
-    And adults count should be 2
-    And seat number should be 13
+    And name is John
+    And surname is Smith
+    And departure airport is RIX
+    And arrival airport is JFC
+    And luggage count is 2
+    And discount code is Code123
+    And children count is 1
+    And flight date is 13
+    And adults count is 2
+    And seat number is 13
+    Then reservation should be in list

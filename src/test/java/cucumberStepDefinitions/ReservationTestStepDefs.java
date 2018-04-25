@@ -16,75 +16,84 @@ public class ReservationTestStepDefs {
 
     private List<ReservationResponse> responses = new ArrayList<>();
     private ReservationRequester requester = new ReservationRequester();
-    private ReservationResponse response;
+    private ReservationResponse response = new ReservationResponse();
 
     @When("we are requesting reservations")
     public void get_reservation_result() throws IOException {
         responses = requester.getReservations();
-
     }
 
-    @Then("reservation id should be (.*)")
-    public void get_reservation_with_certain_id(Long id) {
-        Boolean isReservationIdPresented = false;
+    @When("name is (.*)")
+    public void get_name(String name) {
+        response.setName(name);
+    }
+
+    @When("surname is (.*)")
+    public void get_surname(String surname) {
+        response.setSurname(surname);
+    }
+
+    @When("departure airport is (.*)")
+    public void get_departure_airport(String afrom) {
+        response.setAfrom(afrom);
+    }
+
+    @When("arrival airport is (.*)")
+    public void get_arrival_airport(String ato) {
+        response.setAto(ato);
+    }
+
+    @When("discount code is (.*)")
+    public void get_discount_code(String discount) {
+        response.setDiscount(discount);
+    }
+
+    @When("adults count is (.*)")
+    public void get_adults_count(Integer adults) {
+        response.setAdults(adults);
+    }
+
+    @When("children count is (.*)")
+    public void get_children_count(Integer children) {
+        response.setChildren(children);
+    }
+
+    @When("luggage count is (.*)")
+    public void get_luggage_count(Integer bugs) {
+        response.setBugs(bugs);
+    }
+
+    @When("flight date is (.*)")
+    public void get_flight_date(String flight) {
+        response.setFlight(flight);
+    }
+
+    @When("seat number is (.*)")
+    public void get_seat_number(Integer seat) {
+        response.setSeat(seat);
+    }
+
+    @Then("reservation should be in list")
+    public void check_reservation(){
+        Boolean isReservationPresented = false;
+
         for(int i = 0; i < responses.size(); i++) {
-            response = responses.get(i);
-            if(response.getId().equals(id)) {
-                isReservationIdPresented = true;
+            if(responses.get(i).getName().equals(response.getName()) &&
+                    responses.get(i).getSurname().equals(response.getSurname()) &&
+                    responses.get(i).getAfrom().equals(response.getAfrom()) &&
+                    responses.get(i).getAto().equals(response.getAto()) &&
+                    responses.get(i).getDiscount().equals(response.getDiscount()) &&
+                    responses.get(i).getAdults().equals(response.getAdults()) &&
+                    responses.get(i).getChildren().equals(response.getChildren()) &&
+                    responses.get(i).getBugs().equals(response.getBugs()) &&
+                    responses.get(i).getFlight().equals(response.getFlight()) &&
+                    responses.get(i).getSeat().equals(response.getSeat())) {
+                isReservationPresented = true;
                 break;
             }
+
         }
-        assertTrue("There isn't reservation with id " + id, isReservationIdPresented);
-    }
 
-
-    @Then("name should be (.*)")
-    public void check_name(String name) {
-        assertEquals("Wrong name: ", name, response.getName());
-    }
-
-    @Then("surname should be (.*)")
-    public void check_surname(String surname) {
-        assertEquals("Wrong surname: ", surname, response.getSurname());
-    }
-
-    @Then("departure airport should be (.*)")
-    public void check_departure_airport(String afrom) {
-        assertEquals("Wrong departure airport: ", afrom, response.getAfrom());
-    }
-
-    @Then("arrival airport should be (.*)")
-    public void check_arrival_airport(String ato) {
-        assertEquals("Wrong arrival airport: ", ato, response.getAto());
-    }
-
-    @Then("discount code should be (.*)")
-    public void check_discount_code(String discount) {
-        assertEquals("Wrong discount code: ", discount, response.getDiscount());
-    }
-
-    @Then("adults count should be (.*)")
-    public void check_adults_count(Integer adults) {
-        assertEquals("Wrong adults count: ", adults, response.getAdults());
-    }
-
-    @Then("children count should be (.*)")
-    public void check_children_count(Integer children) {
-        assertEquals("Wrong children count: ", children, response.getChildren());
-    }
-
-    @Then("luggage count should be (.*)")
-    public void check_luggge_count(Integer bugs) {
-        assertEquals("Wrong luggage count: ", bugs, response.getBugs());
-    }
-
-    @Then("flight date should be (.*)")
-    public void check_flight_date(String flight) {
-        assertEquals("Wrong flight date: ", flight, response.getFlight());
-    }
-
-    @Then("seat number should be (.*)")
-    public void check_seat_number(Integer seat) {
-        assertEquals("Wrong seat number: ", seat, response.getSeat());
+        assertTrue("There isn't reservation with that field.", isReservationPresented);
     }
 }
